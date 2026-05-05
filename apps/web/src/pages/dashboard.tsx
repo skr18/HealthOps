@@ -1,21 +1,22 @@
 import RoleBased from "../components/RoleBased";
+import MainLayout from "../components/layout/mainLayout";
 
 export default function Dashboard() {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <MainLayout>
+      <h1>Welcome</h1>
 
       <RoleBased role="ADMIN">
-        <button>Admin Panel</button>
+        <button>Admin Analytics</button>
       </RoleBased>
 
       <RoleBased role="DOCTOR">
-        <button>Doctor Dashboard</button>
+        <button>Doctor Appointments</button>
       </RoleBased>
 
       <RoleBased role="PATIENT">
         <button>Book Appointment</button>
       </RoleBased>
-    </div>
+    </MainLayout>
   );
 }
