@@ -1,5 +1,5 @@
-import RoleBased from "../components/RoleBased";
-import MainLayout from "../components/layout/mainLayout";
+import RoleBased from "../../components/RoleBased";
+import MainLayout from "../../components/layout/mainLayout";
 
 export default function Dashboard() {
   return (

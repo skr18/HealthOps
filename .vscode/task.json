@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Web",
+            "type": "shell",
+            "command": "pnpm --filter web run dev",
+            "presentation": {
+                "group": "healthops-group",
+                "panel": "dedicated",
+                "clear": true
+            }
+        },
+        {
+            "label": "Run Auth-service",
+            "type": "shell",
+            "command": "pnpm --filter auth-service run start:dev",
+            "presentation": {
+                "group": "healthops-group",
+                "panel": "dedicated",
+                "clear": true
+            }
+        },
+        {
+            "label": "Run Doctor-service",
+            "type": "shell",
+            "command": "pnpm --filter doctor-service run start:dev",
+            "presentation": {
+                "group": "healthops-group",
+                "panel": "dedicated",
+                "clear": true
+            }
+        },
+        {
+            "label": "Start All Services",
+            "dependsOn": [
+                "Run Web",
+                "Run Auth-service",
+                "Run Doctor-service"
+
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

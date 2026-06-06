@@ -5,9 +5,8 @@ services:
     restart: always #If your computer restarts or the MySQL process crashes, Docker will automatically try to bring the database back up.
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: healthcare
     ports:
-      - "3307:3306"
+      - "3307:3306"  #machine port : container port
     volumes:
       - mysql_data:/var/lib/mysql
 

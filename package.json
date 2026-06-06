@@ -2,5 +2,16 @@
 	"devDependencies": {
 		"turbo": "^2.9.6",
 		"typescript": "^6.0.2"
-	}
+	},
+	"name": "healthops-monorepo",
+  	"private": true,
+	"scripts": {
+		
+    "start:web": "pnpm --filter web run dev",
+    "start:auth": "pnpm --filter auth-service run start:dev",
+    "start:doctor": "pnpm --filter doctor-service run start:dev",
+
+    "start:all": "pnpm -r --parallel run dev",
+    "build:all": "pnpm -r build"
+  }
 }

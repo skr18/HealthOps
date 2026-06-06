@@ -13,7 +13,7 @@ async function bootstrap() {
     credentials: true, // Required if you plan to send secure cookies or JWTs
   });
   
-  app.useGlobalPipes(new ValidationPipe());
-  await app.listen(process.env.PORT ?? 3000);
+  app.useGlobalPipes(new ValidationPipe({whitelist:true}));
+  await app.listen(process.env.PORT ?? 3001);
 }
 bootstrap();
