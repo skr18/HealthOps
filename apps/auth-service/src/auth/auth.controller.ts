@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Query, Version } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
@@ -13,12 +13,20 @@ import { RolesGuard } from './roles.guard';
 export class AuthController {
   constructor(private authService: AuthService) { }
 
+  @Get('nickname-availability')
+  @Version("1")
+  checkNickname(@Query('nickname') nickname: string,) {
+    return this.authService.checkNickname(nickname);
+  }
+
   @Post('signup')
+  @Version("1")
   signup(@Body() dto: SignupDto) {
-    return this.authService.signup(dto.email, dto.password);
+    return this.authService.signup(dto);
   }
 
   @Post('login')
+  @Version("1")
   login(@Body() dto: LoginDto) {
     return this.authService.login(dto.email, dto.password);
   }
@@ -29,18 +37,18 @@ export class AuthController {
     return { message: 'User profil' };
   }
 
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles("ADMIN")
   @Get("admin")
-  adminRoute(){
-    return {message:"Admin access only"}
+  adminRoute() {
+    return { message: "Admin access only" }
   }
 
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles("DOCTOR")
   @Get("doctor")
-  doctorRoute(){
-    return {message:"Doctor access only"}
+  doctorRoute() {
+    return { message: "Doctor access only" }
   }
 
   //🔹 JwtAuthGuard --> ✔ verifies token  ✔ attaches user   🔹 RolesGuard --> ✔ checks permissions

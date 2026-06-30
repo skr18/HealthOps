@@ -11,16 +11,19 @@ datasource db {
   provider = "mysql"
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  role      Role     @default(PATIENT)
-  createdAt DateTime @default(now())
-}
-
 enum Role {
   PATIENT
   DOCTOR
   ADMIN
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  nickname  String   @unique
+  email     String   @unique
+  password  String
+  role      Role   
+  createdAt DateTime @default(now())
+}
+
+
